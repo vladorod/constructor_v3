@@ -1,0 +1,17 @@
+.wrap {
+  background: #f1f1f1;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.visibleWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.invisibleWrap {
+  display: none;
+}

@@ -1,0 +1,83 @@
+.wrap {
+  background: #f1f1f1;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.visibleWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.invisibleWrap {
+  display: none;
+}
+
+
+.title {
+  font: normal bold 15px/15px 'Open Sans', sans-serif;
+}
+
+.radioButton {
+  display: none;
+}
+
+.radioButtonWrap {
+  border-radius: 30px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: solid 2px #d72f2a;
+  box-sizing: border-box;
+  min-width: 180px;
+  font: normal normal 15px/15px 'Open Sans', sans-serif;
+}
+
+.yesNoRadioButtonWrap {
+  text-align: center;
+  margin-right: 20px;
+  font: normal normal 15px/15px 'Open Sans', sans-serif;
+}
+
+.yesNoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radioButtonWrap:hover .radioButtonText,
+.radioButtonWrap:hover {
+  cursor: pointer;
+  background: #ffefee;
+}
+
+.radioButtonWrapUnChecked {
+  background: #fff;
+}
+
+.radioButtonWrapChecked {
+  color: #fff;
+  background: #d72f2a;
+}
+
+.radioButtonWrapChecked:hover .radioButtonText,
+.radioButtonWrapChecked:hover {
+  background:#d72f2a;
+}
+
+@media (max-width: 768px) {
+  .yesNoRadioButtonWrap,
+  .radioButtonWrap {
+    font:normal normal 14px/15px 'Open Sans', sans-serif;
+  }
+
+  .title {
+    font:normal bold 14px/15px 'Open Sans', sans-serif;
+  }
+}
+
+@media (max-width: 500px) {
+  .radioButtonWrap {
+    max-width: 95%;
+  }
+}
