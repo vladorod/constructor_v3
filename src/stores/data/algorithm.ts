@@ -14,15 +14,15 @@ import {
 } from "../../interfaces/algorithms";
 import { v1 as uuidv1 } from "uuid";
 
-export class Algorithm implements IAlgorithm {
-  public title;
-  public content;
-  public visibility;
-  public important;
-  public type;
+export class Algorithm {
+  public title: string;
+  public content: ContentElement;
+  public visibility: boolean;
+  public important: boolean;
+  public type: keyof typeof EAlgorithmsTypes;
+  public logicBlock: LogicBlock[];
 
   private _id: string;
-  private _logicBlock: ILogicBlock[];
 
   constructor(
     type: keyof typeof EAlgorithmsTypes,
@@ -35,7 +35,7 @@ export class Algorithm implements IAlgorithm {
     this.type = type;
     this.content = new ContentElement(title, "");
     this.visibility = visibility;
-    this._logicBlock = [new LogicBlock("and", "show", "all", [], false)];
+    this.logicBlock = [new LogicBlock("and", "show", "all", [], false)];
 
     makeAutoObservable(this, {}, { autoBind: true });
   }
@@ -45,15 +45,11 @@ export class Algorithm implements IAlgorithm {
     show: keyof typeof EShow,
     matchType: keyof typeof EMatchType
   ) {
-    this._logicBlock.push(new LogicBlock(behavior, show, matchType, [], false));
+    this.logicBlock.push(new LogicBlock(behavior, show, matchType, [], false));
   }
 
   public get id() {
     return this._id;
-  }
-
-  public get logicBlock() {
-    return this._logicBlock;
   }
 }
 
@@ -89,7 +85,7 @@ class ContentElementValue implements IContentValue {
   }
 }
 
-class LogicBlock implements ILogicBlock {
+export class LogicBlock {
   private _logicBlockId;
 
   public behavior: keyof typeof EBehavior | null;

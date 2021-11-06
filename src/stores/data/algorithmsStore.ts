@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { EAlgorithmsTypes, IAlgorithm } from "../../interfaces/algorithms";
 import { RootStore } from "../RootStore";
 import { Algorithm } from "./algorithm";
@@ -23,7 +23,7 @@ export class AlgorithmsStore {
 
     if (!id || !position) {
       this.AlgorithmBlocks.push(algorithm);
-      console.log(toJS(this.AlgorithmBlocks));
+
       return;
     }
 
@@ -35,7 +35,5 @@ export class AlgorithmsStore {
 
     if (position === "bottom")
       this.AlgorithmBlocks.splice(index + 1, 0, algorithm);
-
-    console.log(toJS(this.AlgorithmBlocks));
   }
 }

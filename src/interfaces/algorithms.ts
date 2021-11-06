@@ -1,3 +1,5 @@
+import { LogicBlock } from "../stores/data/algorithm";
+
 export enum EAlgorithmsTypes {
   "accordion",
   "multiSelect",
@@ -52,10 +54,10 @@ export interface IAlgorithm {
   type: keyof typeof EAlgorithmsTypes;
   content: IContent;
   important: boolean;
+  logicBlock: LogicBlock[];
   visibility: boolean;
   id: string;
 }
-
 export interface IRule {
   rulesObjectId: string;
   status: boolean;

@@ -439,11 +439,12 @@ const AlgorithmsRender = observer(() => {
     <div>
       <div onClick={() => createElement({ type: "checkbox" })}>add ===> </div>
       <div>
-        {AlgorithmBlocks.map((item) => (
+        {AlgorithmBlocks.map((item, index) => (
           <div key={item.id}>
             {
               <GetComponent
                 item={item}
+                index={index}
                 onClickMultiSelectButton={() => {}}
                 changeData={() => {}}
               />
