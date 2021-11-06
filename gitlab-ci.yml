@@ -1,0 +1,8 @@
+stages:
+  - build
+build project:
+  stage: build
+  image: node:15
+  script:
+    - yarn install
+    - yarn build

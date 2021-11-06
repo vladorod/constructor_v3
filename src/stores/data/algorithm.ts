@@ -5,9 +5,12 @@ import {
   EAlgorithmsTypes,
   ILogicBlock,
   EMatchType,
-  IRules,
+  IRule,
   IContent,
   IContentValue,
+  EShow,
+  EBehavior,
+  ECondition,
 } from "../../interfaces/algorithms";
 import { v1 as uuidv1 } from "uuid";
 
@@ -32,10 +35,17 @@ export class Algorithm implements IAlgorithm {
     this.type = type;
     this.content = new ContentElement(title, "");
     this.visibility = visibility;
-    this._logicBlock = [
-      new LogicBlock("and", "123123", "show", "all", [], false),
-    ];
+    this._logicBlock = [new LogicBlock("and", "show", "all", [], false)];
+
     makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  addLogicBlock(
+    behavior: keyof typeof EBehavior | null,
+    show: keyof typeof EShow,
+    matchType: keyof typeof EMatchType
+  ) {
+    this._logicBlock.push(new LogicBlock(behavior, show, matchType, [], false));
   }
 
   public get id() {
@@ -57,6 +67,10 @@ class ContentElement implements IContent {
     this.color = color;
     this.value = [new ContentElementValue("123")];
   }
+
+  addValue(value: string) {
+    this.value.push(new ContentElementValue(value));
+  }
 }
 
 class ContentElementValue implements IContentValue {
@@ -66,6 +80,8 @@ class ContentElementValue implements IContentValue {
   constructor(item: string) {
     this.item = item;
     this._key = uuidv1();
+
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   get key() {
@@ -74,26 +90,82 @@ class ContentElementValue implements IContentValue {
 }
 
 class LogicBlock implements ILogicBlock {
-  public behavior;
-  public logicBlockId;
+  private _logicBlockId;
+
+  public behavior: keyof typeof EBehavior | null;
   public show;
   public matchType;
   public rules;
   public status;
 
   constructor(
-    behavior: null | "and" | "or",
-    logicBlockId: string,
-    show: "show" | "hide",
+    behavior: keyof typeof EBehavior | null,
+    show: keyof typeof EShow,
     matchType: keyof typeof EMatchType,
-    rules: IRules[],
+    rules: Rule[],
     status: boolean
   ) {
     this.behavior = behavior;
-    this.logicBlockId = logicBlockId;
+    this._logicBlockId = uuidv1();
     this.show = show;
     this.matchType = matchType;
-    this.rules = rules;
+    this.rules = rules ?? [];
     this.status = status;
+
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  get logicBlockId() {
+    return this._logicBlockId;
+  }
+
+  addRule(condition: keyof typeof ECondition, text: string, valueId: string) {
+    this.rules.push(new Rule(uuidv1(), condition, text, valueId));
+  }
+}
+
+class Rule implements IRule {
+  private _rulesObjectId: string;
+
+  public status: boolean;
+  public elementId: string;
+  public condition: keyof typeof ECondition;
+  public text: string;
+  public valueId: string;
+
+  constructor(
+    elementId: string,
+    condition: keyof typeof ECondition,
+    text: string,
+    valueId: string
+  ) {
+    this._rulesObjectId = uuidv1();
+    this.status = false;
+    this.elementId = "";
+    this.condition = "match";
+    this.text = "";
+    this.valueId = "";
+
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  get rulesObjectId() {
+    return this._rulesObjectId;
+  }
+
+  updateStatus(status: boolean) {
+    this.status = status;
+  }
+
+  updateCondition(type: keyof typeof ECondition) {
+    this.condition = type;
+  }
+
+  updateText(text: string) {
+    this.text = text;
+  }
+
+  updateValueId(id: string) {
+    this.valueId = id;
   }
 }

@@ -8,8 +8,18 @@ export enum EAlgorithmsTypes {
   "text",
 }
 
+export enum EShow {
+  "show",
+  "hide",
+}
+
 export enum ECondition {
   "match",
+}
+
+export enum EBehavior {
+  "and",
+  "or",
 }
 
 export enum EMatchType {
@@ -30,11 +40,11 @@ export interface IContent {
 }
 
 export interface ILogicBlock {
-  behavior: null | "and" | "or";
+  behavior: keyof typeof EBehavior | null;
   logicBlockId: string;
-  show: "show" | "hide";
+  show: keyof typeof EShow;
   matchType: keyof typeof EMatchType;
-  rules: IRules[];
+  rules: IRule[];
   status: boolean;
 }
 
@@ -46,7 +56,7 @@ export interface IAlgorithm {
   id: string;
 }
 
-export interface IRules {
+export interface IRule {
   rulesObjectId: string;
   status: boolean;
   elementId: string;
