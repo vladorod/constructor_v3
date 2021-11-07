@@ -437,9 +437,6 @@ const AlgorithmsRender = observer(() => {
 
   return (
     <div>
-      <div onClick={() => createElement({ type: "checkbox" })}>
-        add ==={">"}
-      </div>
       <div>
         {AlgorithmBlocks.map((item, index) => (
           <div key={item.id}>

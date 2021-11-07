@@ -12,6 +12,9 @@
   align-items: center;
 }
 
+.contentText {
+  text-align: left;
+}
 .invisibleWrap {
   display: none;
 }
