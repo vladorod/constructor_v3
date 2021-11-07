@@ -3,14 +3,14 @@ import classnames from "classnames";
 import styles from "./InputField.module.css";
 import { GeneralComponent } from "../../algorithmsSettings/algorithmsSettings";
 
-const InputField = ({ componentBlock, placeholder }) => (
+const InputField = ({ componentBlock, placeholder, index }) => (
   <div
     className={classnames({
       [styles.wrap]: componentBlock.visibility,
       [styles.visibility]: !componentBlock.visibility,
     })}
   >
-    <GeneralComponent item={componentBlock} />
+    <GeneralComponent index={index} item={componentBlock} />
     {/*<TextInput*/}
     {/*  placeholder={placeholder}*/}
     {/*/>*/}

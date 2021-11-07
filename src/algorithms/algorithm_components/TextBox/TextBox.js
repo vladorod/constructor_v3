@@ -7,7 +7,7 @@ const createMarkup = (text) => {
   return { __html: text.replace(/\n/g, "<br>") };
 };
 
-const TextBox = ({ componentBlock, contentData, title, navigation }) => {
+const TextBox = ({ componentBlock, contentData, title, navigation, index }) => {
   return (
     <div
       className={classnames({
@@ -16,7 +16,7 @@ const TextBox = ({ componentBlock, contentData, title, navigation }) => {
         [styles.invisibleWrap]: !componentBlock.visibility,
       })}
     >
-      <GeneralComponent item={componentBlock} />
+      <GeneralComponent index={index} item={componentBlock} />
       <p>
         <div dangerouslySetInnerHTML={createMarkup(title)} />
       </p>

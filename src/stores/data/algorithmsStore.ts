@@ -11,7 +11,7 @@ interface ICreateElement {
 }
 
 export class AlgorithmsStore {
-  public AlgorithmBlocks: IAlgorithm[];
+  public AlgorithmBlocks: Algorithm[];
 
   constructor(rootStore: RootStore) {
     this.AlgorithmBlocks = [new Algorithm("multiSelect", "test", true)];
@@ -35,5 +35,16 @@ export class AlgorithmsStore {
 
     if (position === "bottom")
       this.AlgorithmBlocks.splice(index + 1, 0, algorithm);
+  }
+
+  get lables() {
+    return this.AlgorithmBlocks.map((algorithm, index) => ({
+      value: algorithm.id,
+      text: algorithm.content.title,
+    }));
+  }
+
+  getElementById(id: string): Algorithm | undefined {
+    return this.AlgorithmBlocks.find((algorithm) => algorithm.id === id);
   }
 }

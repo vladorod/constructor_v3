@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { StoreProvider } from "./stores/helpers/storeContext";
 import { RootStore } from "./stores/RootStore";
 import { createStore } from "./stores/helpers/createStore";
+import LogicDialog from "./components/LogicDialog/LogicDialogPL";
+import "antd/dist/antd.css";
 
 const store = createStore();
 

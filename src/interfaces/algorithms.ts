@@ -16,7 +16,8 @@ export enum EShow {
 }
 
 export enum ECondition {
-  "match",
+  "match" = "=",
+  "no match" = "!=",
 }
 
 export enum EBehavior {

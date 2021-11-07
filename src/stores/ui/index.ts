@@ -1,5 +1,10 @@
-import { RootStore } from '../RootStore';
+import { RootStore } from "../RootStore";
+import { DialogsStore } from "./dialogs";
 
 export class UiStore {
-  constructor(rootStore: RootStore) {}
+  public dialogStore: DialogsStore;
+
+  constructor(rootStore: RootStore) {
+    this.dialogStore = new DialogsStore(rootStore);
+  }
 }

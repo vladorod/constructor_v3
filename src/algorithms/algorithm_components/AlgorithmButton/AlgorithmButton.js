@@ -9,6 +9,7 @@ const AlgorithmButton = ({
   id,
   changeData,
   title,
+  index,
 }) => (
   <div
     className={classnames({
@@ -19,7 +20,7 @@ const AlgorithmButton = ({
   >
     {contentData.map((item) => (
       <div key={item.key}>
-        <GeneralComponent item={componentBlock} />
+        <GeneralComponent index={index} item={componentBlock} />
         <button
           className={classnames({
             [styles.button]: true,

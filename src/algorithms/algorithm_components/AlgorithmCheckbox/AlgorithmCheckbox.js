@@ -12,6 +12,7 @@ const AlgorithmCheckbox = ({
   contentData,
   id,
   changeData,
+  index,
   title,
 }) => (
   <div
@@ -20,7 +21,7 @@ const AlgorithmCheckbox = ({
       [styles.visibility]: !componentBlock.visibility,
     })}
   >
-    <GeneralComponent item={componentBlock} />
+    <GeneralComponent item={componentBlock} index={index} />
     <div>
       {contentData.map((item) => (
         <div key={item.key}>

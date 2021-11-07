@@ -115,6 +115,10 @@ export class LogicBlock {
     return this._logicBlockId;
   }
 
+  deleteRule(index: number) {
+    this.rules.splice(index, 1);
+  }
+
   addRule(condition: keyof typeof ECondition, text: string, valueId: string) {
     this.rules.push(new Rule(uuidv1(), condition, text, valueId));
   }
@@ -151,6 +155,10 @@ class Rule implements IRule {
 
   updateStatus(status: boolean) {
     this.status = status;
+  }
+
+  updateElementId(id: string) {
+    this.elementId = id;
   }
 
   updateCondition(type: keyof typeof ECondition) {

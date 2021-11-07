@@ -13,6 +13,10 @@ import {
 
 import style from "./algorithmsSettings.module.css";
 
+const settings = {
+  iconSize: "24px!important",
+};
+
 const Popover = ({
   children,
   content,
@@ -82,8 +86,8 @@ const Popover = ({
 
 const imgStyle = {
   padding: "3px 5px",
-  width: 15,
-  height: 15,
+  width: settings.iconSize,
+  height: settings.iconSize,
 };
 
 const iconWrapper = {
@@ -107,7 +111,7 @@ const Icon = ({ name = "Add", onElementClick, ...props }) => {
   );
 };
 
-export const GeneralComponent = ({ item }) => {
+export const GeneralComponent = ({ item, index }) => {
   const store = useStore();
 
   const [addedPopperVisible, setAddedPopperVisible] = useState(false);
@@ -121,7 +125,8 @@ export const GeneralComponent = ({ item }) => {
     console.log("onDelete");
   };
   const onEditLogic = () => {
-    console.log("onEditLogic");
+    store.ui.dialogStore.LogicDialog.show(true, index);
+    hideAll();
   };
   const onAdd = (type = "Top") => {
     console.log({
@@ -159,8 +164,13 @@ export const GeneralComponent = ({ item }) => {
           setEditPopperVisible((visible) => !visible);
         }}
         content={
-          <div style={{ display: "flex" }}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
               <Icon name="Delete" onClick={onDelete} />
               <Icon name="Logic" onClick={onEditLogic} />
               <Icon name="Edit" onClick={onEdit} />
@@ -216,11 +226,13 @@ export const GetComponent = ({
   changeData,
   onClickMultiSelectButton,
   navigation,
+  index,
 }) => {
   switch (item.type) {
     case "text":
       return (
         <TextBox
+          index={index}
           componentBlock={item}
           contentData={item.content.value}
           title={item.content.title.replace("<a", '<a target="_blank" ')}
@@ -231,6 +243,7 @@ export const GetComponent = ({
     case "input":
       return (
         <InputField
+          index={index}
           componentBlock={item}
           placeholder={item.content.title.replace(/(\<(\/?[^>]+)>)/g, "")}
           navigation={navigation}
@@ -240,6 +253,7 @@ export const GetComponent = ({
     case "radiobutton":
       return (
         <RadioButton
+          index={index}
           componentBlock={item}
           contentData={item.content.value}
           id={item.id}
@@ -252,6 +266,7 @@ export const GetComponent = ({
     case "button":
       return (
         <AlgorithmButton
+          index={index}
           contentData={item.content.value}
           id={item.id}
           changeData={changeData}
@@ -264,6 +279,7 @@ export const GetComponent = ({
     case "checkbox":
       return (
         <AlgorithmCheckbox
+          index={index}
           componentBlock={item}
           contentData={item.content.value}
           id={item.id}
@@ -275,6 +291,7 @@ export const GetComponent = ({
     case "multiSelect":
       return (
         <MultiSelect
+          index={index}
           componentBlock={item}
           contentData={item.content.value}
           onClickMultiSelectButton={onClickMultiSelectButton}
@@ -287,6 +304,7 @@ export const GetComponent = ({
     case "accordion":
       return (
         <AlgorithmAccordion
+          index={index}
           componentBlock={item}
           contentData={item.content.value}
           id={item.id}

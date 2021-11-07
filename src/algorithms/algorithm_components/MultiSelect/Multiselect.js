@@ -24,7 +24,8 @@ class MultiSelect extends React.Component {
   };
 
   render() {
-    const { componentBlock, contentData, id, changeData, title } = this.props;
+    const { componentBlock, contentData, id, changeData, title, index } =
+      this.props;
 
     return (
       <div
@@ -34,7 +35,7 @@ class MultiSelect extends React.Component {
           [styles.invisibleWrap]: !componentBlock.visibility,
         })}
       >
-        <GeneralComponent item={componentBlock} />
+        <GeneralComponent index={index} item={componentBlock} />
         <p style={styles.itemTitle}>{title}</p>
 
         {contentData.map((item) => (

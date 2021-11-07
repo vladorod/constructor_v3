@@ -5,7 +5,8 @@ import { GeneralComponent } from "../../algorithmsSettings/algorithmsSettings";
 
 class RadioButton extends React.Component {
   render() {
-    const { componentBlock, contentData, id, changeData, title } = this.props;
+    const { componentBlock, contentData, id, changeData, title, index } =
+      this.props;
     const isYes = true; //contentData[0].item === 'Да';
     return (
       <div
@@ -15,7 +16,7 @@ class RadioButton extends React.Component {
           [styles.invisibleWrap]: !componentBlock.visibility,
         })}
       >
-        <GeneralComponent item={componentBlock} />
+        <GeneralComponent index={index} item={componentBlock} />
         <p className={styles.title}>{title}</p>
         <div>
           <div
