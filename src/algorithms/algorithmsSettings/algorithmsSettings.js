@@ -193,7 +193,7 @@ export const GeneralComponent = ({ item, index }) => {
                     }}
                   >
                     <option value="multiSelect">Мультивыбор</option>
-                    <option value="checkbox">Чекбокс</option>
+                    <option value="radiobutton">Радиокнопка</option>
                     <option value="text">Текст</option>
                     <option value="accordion">Акардион</option>
                     <option value="button">Кнопка</option>
