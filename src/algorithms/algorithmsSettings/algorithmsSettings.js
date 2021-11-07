@@ -117,9 +117,15 @@ export const EditContentManager = ({item, type, newContent}) => {
     <div style={{display: 'flex', flexDirection: 'row'}}>
       <Icon name="DoneContentEdit" onElementClick={() => {
         item.onEdit = false;
+        
         switch (type) {
           case 'text':
             item.content.title = newContent.content;
+            break;
+          case 'button':
+            console.log(newContent.content)
+            item.content.title = newContent.content;
+            break;
         }        
       }}
       />
@@ -209,8 +215,8 @@ export const GeneralComponent = ({ item, index }) => {
                       borderRadius: 0,
                     }}
                   >
-                    <option value="multiSelect">Мультивыбор</option>
                     <option value="radiobutton">Радиокнопка</option>
+                    <option value="multiSelect">Мультивыбор</option>
                     <option value="text">Текст</option>
                     <option value="accordion">Аккордеон</option>
                     <option value="button">Кнопка</option>
@@ -251,9 +257,6 @@ export const GetComponent = ({
         <TextBox
           index={index}
           componentBlock={item}
-          contentData={item.content.value}
-          title={item.content.title.replace("<a", '<a target="_blank" ')}
-          navigation={navigation}
         />
       );
 
@@ -288,7 +291,6 @@ export const GetComponent = ({
           id={item.id}
           changeData={changeData}
           componentBlock={item}
-          title={item.content.title.replace(/(\<(\/?[^>]+)>)/g, "")}
           navigation={navigation}
         />
       );

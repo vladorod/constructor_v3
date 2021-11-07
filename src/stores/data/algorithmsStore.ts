@@ -14,7 +14,7 @@ export class AlgorithmsStore {
   public AlgorithmBlocks: Algorithm[];
 
   constructor(rootStore: RootStore) {
-    this.AlgorithmBlocks = [new Algorithm("text", "test", true, false)];
+    this.AlgorithmBlocks = [new Algorithm("button", "test", true, false)];
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
