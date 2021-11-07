@@ -123,7 +123,6 @@ export const EditContentManager = ({item, type, newContent}) => {
             item.content.title = newContent.content;
             break;
           case 'button':
-            console.log(newContent.content)
             item.content.title = newContent.content;
             break;
         }        

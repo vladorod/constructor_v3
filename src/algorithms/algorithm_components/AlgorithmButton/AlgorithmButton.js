@@ -35,7 +35,7 @@ const AlgorithmButton = observer (({
       {componentBlock.onEdit ? (
         <div className={styles.editBlock}>
           <div className={styles.editContentBlock}>
-            <textarea
+            <input
               className={styles.editTextInput}
               value={newText}
               onChange={(event) => setNewText(event.target.value)}
