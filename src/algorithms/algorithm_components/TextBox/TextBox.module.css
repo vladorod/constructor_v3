@@ -15,3 +15,24 @@
 .invisibleWrap {
   display: none;
 }
+.editBlock {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 100%;
+}
+
+.editContentBlock {
+  width: 95%;
+}
+
+.editTextInput {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.editManagerBlock {
+  display: flex;
+  justify-content: flex-end;
+  width: 5%;
+}

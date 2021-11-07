@@ -14,12 +14,12 @@ export class AlgorithmsStore {
   public AlgorithmBlocks: Algorithm[];
 
   constructor(rootStore: RootStore) {
-    this.AlgorithmBlocks = [new Algorithm("multiSelect", "test", true)];
+    this.AlgorithmBlocks = [new Algorithm("text", "test", true, false)];
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   public createElement({ id, position, type, title }: ICreateElement): void {
-    const algorithm = new Algorithm(type, title ?? type, true);
+    const algorithm = new Algorithm(type, title ?? type, true, true);
 
     if (!id || !position) {
       this.AlgorithmBlocks.push(algorithm);

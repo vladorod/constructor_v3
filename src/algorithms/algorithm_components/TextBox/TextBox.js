@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "./TextBox.module.css";
 import classnames from "classnames";
-import { EditContentManager, GeneralComponent } from "../../algorithmsSettings/algorithmsSettings";
-
-
-
+import {
+  EditContentManager,
+  GeneralComponent,
+} from "../../algorithmsSettings/algorithmsSettings";
+import { observer } from "mobx-react-lite";
 
 
 const createMarkup = (text) => {
   return { __html: text.replace(/\n/g, "<br>") };
 };
 
-const TextBox = ({ componentBlock, contentData, title, navigation, index }) => {
+const TextBox = observer (({ componentBlock, contentData, title, navigation, index }) => {
   return (
     <div
       className={classnames({
@@ -20,21 +21,25 @@ const TextBox = ({ componentBlock, contentData, title, navigation, index }) => {
         [styles.invisibleWrap]: !componentBlock.visibility,
       })}
     >
-
-      {componentBlock.onEdit && 
-      <div className={styles.editBlock}> 
-        <div className={styles.editContentBlock}>
-          <input/>
+      {componentBlock.onEdit ? (
+        <div className={styles.editBlock}>
+          <div className={styles.editContentBlock}>
+            <input className={styles.editTextInput}/>
+          </div>
+          <div className={styles.editManagerBlock}>
+            <EditContentManager item={componentBlock} />
+          </div>
         </div>
-        <EditContentManager item={componentBlock}/>
-      </div>
-      }
-      <GeneralComponent index={index} item={componentBlock} />
-      <p>
-        <div dangerouslySetInnerHTML={createMarkup(title)} />
-      </p>
+      ) : (
+        <div>
+          <GeneralComponent index={index} item={componentBlock} />
+          <p>
+            <div dangerouslySetInnerHTML={createMarkup(title)} />
+          </p>
+        </div>
+      )}
     </div>
   );
-};
+});
 
 export default TextBox;

@@ -113,7 +113,7 @@ const Icon = ({ name = "Add", onElementClick, ...props }) => {
 
 export const EditContentManager = ({item}) => {
   return (
-    <div style={{flexDirection: 'row'}}>
+    <div style={{display: 'flex', flexDirection: 'row'}}>
       <Icon name="DoneContentEdit" onElementClick={() => item.onEdit = false} />
       <Icon name="CloseContentEdit" onElementClick={() => item.onEdit = false} />
     </div>
@@ -128,7 +128,7 @@ export const GeneralComponent = ({ item, index }) => {
   const [blockType, setBlockType] = useState("multiSelect");
 
   const onEdit = () => {
-    console.log("onEdit");
+    item.onEdit = true;
   };
   const onDelete = () => {
     console.log("onDelete");

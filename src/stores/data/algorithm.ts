@@ -28,10 +28,11 @@ export class Algorithm {
   constructor(
     type: keyof typeof EAlgorithmsTypes,
     title: string,
-    visibility: boolean
+    visibility: boolean,
+    onEdit: boolean
   ) {
     this._id = uuidv1();
-    this._onEdit = true;
+    this._onEdit = onEdit;
     this.important = false;
     this.title = title;
     this.type = type;
