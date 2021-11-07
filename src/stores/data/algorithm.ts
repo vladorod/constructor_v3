@@ -23,6 +23,7 @@ export class Algorithm {
   public logicBlock: LogicBlock[];
 
   private _id: string;
+  private _onEdit: boolean;
 
   constructor(
     type: keyof typeof EAlgorithmsTypes,
@@ -30,6 +31,7 @@ export class Algorithm {
     visibility: boolean
   ) {
     this._id = uuidv1();
+    this._onEdit = true;
     this.important = false;
     this.title = title;
     this.type = type;
@@ -51,6 +53,15 @@ export class Algorithm {
   public get id() {
     return this._id;
   }
+
+  public get onEdit() {
+    return this._onEdit;
+  }
+
+  public set onEdit(onEdit: boolean) {
+    this._onEdit = onEdit;
+  }
+
 }
 
 class ContentElement implements IContent {

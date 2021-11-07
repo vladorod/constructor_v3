@@ -111,6 +111,15 @@ const Icon = ({ name = "Add", onElementClick, ...props }) => {
   );
 };
 
+export const EditContentManager = ({item}) => {
+  return (
+    <div style={{flexDirection: 'row'}}>
+      <Icon name="DoneContentEdit" onElementClick={() => item.onEdit = false} />
+      <Icon name="CloseContentEdit" onElementClick={() => item.onEdit = false} />
+    </div>
+  )
+};
+
 export const GeneralComponent = ({ item, index }) => {
   const store = useStore();
 
@@ -195,7 +204,7 @@ export const GeneralComponent = ({ item, index }) => {
                     <option value="multiSelect">Мультивыбор</option>
                     <option value="radiobutton">Радиокнопка</option>
                     <option value="text">Текст</option>
-                    <option value="accordion">Акардион</option>
+                    <option value="accordion">Аккордеон</option>
                     <option value="button">Кнопка</option>
                   </select>
                   <Icon name="Up" onClick={() => onAdd("Top")} />

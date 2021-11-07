@@ -58,6 +58,7 @@ export interface IAlgorithm {
   logicBlock: LogicBlock[];
   visibility: boolean;
   id: string;
+  onEdit: boolean;
 }
 export interface IRule {
   rulesObjectId: string;
