@@ -36,3 +36,7 @@
   justify-content: flex-end;
   width: 5%;
 }
+
+.settingsWrap {
+  width: 100%;
+}

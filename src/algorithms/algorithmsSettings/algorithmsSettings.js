@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useStore } from "../../stores/helpers/useStore";
 
@@ -111,10 +112,17 @@ const Icon = ({ name = "Add", onElementClick, ...props }) => {
   );
 };
 
-export const EditContentManager = ({item}) => {
+export const EditContentManager = ({item, type, newContent}) => {
   return (
     <div style={{display: 'flex', flexDirection: 'row'}}>
-      <Icon name="DoneContentEdit" onElementClick={() => item.onEdit = false} />
+      <Icon name="DoneContentEdit" onElementClick={() => {
+        item.onEdit = false;
+        switch (type) {
+          case 'text':
+            item.content.title = newContent.content;
+        }        
+      }}
+      />
       <Icon name="CloseContentEdit" onElementClick={() => item.onEdit = false} />
     </div>
   )
@@ -125,7 +133,7 @@ export const GeneralComponent = ({ item, index }) => {
 
   const [addedPopperVisible, setAddedPopperVisible] = useState(false);
   const [editPopperVisible, setEditPopperVisible] = useState(false);
-  const [blockType, setBlockType] = useState("multiSelect");
+  const [blockType, setBlockType] = useState("radiobutton");
 
   const onEdit = () => {
     item.onEdit = true;
@@ -160,8 +168,8 @@ export const GeneralComponent = ({ item, index }) => {
     <div
       style={{
         width: "100%",
-        justifyContent: "end",
         display: "flex",
+        justifyContent: "end",
         marginTop: 8,
       }}
     >
