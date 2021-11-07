@@ -32,16 +32,16 @@ const TextBox = observer(
         {componentBlock.onEdit ? (
           <div className={styles.editBlock}>
             <div className={styles.editContentBlock}>
-              <input className={styles.editTextInput} value={newText} onChange={(event) => setNewText(event.target.value)}/>
+              <textarea className={styles.editTextInput} value={newText} onChange={(event) => setNewText(event.target.value)} placeholder="Содержание блока..." />
             </div>
             <div className={styles.editManagerBlock}>
               <EditContentManager item={componentBlock} type='text' newContent={{content: newText}}/>
             </div>
           </div>
         ) : (
-          <div className={styles.settingsWrap}>
+          <div className={styles.contentBlock}>
             <GeneralComponent index={index} item={componentBlock} />
-            <p>
+            <p style={{textAlign: 'left'}}>
               <div dangerouslySetInnerHTML={createMarkup(componentBlock.content.title)} />
             </p>
           </div>
