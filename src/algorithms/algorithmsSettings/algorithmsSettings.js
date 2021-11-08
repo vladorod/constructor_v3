@@ -125,6 +125,10 @@ export const EditContentManager = ({item, type, newContent}) => {
           case 'button':
             item.content.title = newContent.content;
             break;
+          case 'accordion':
+            item.content.title = newContent.title;
+            item.content.value[0].item = newContent.content;
+            break;
         }        
       }}
       />
@@ -322,13 +326,8 @@ export const GetComponent = ({
     case "accordion":
       return (
         <AlgorithmAccordion
-          index={index}
           componentBlock={item}
           contentData={item.content.value}
-          id={item.id}
-          changeData={changeData}
-          title={item.content.title.replace("<a", '<a target="_blank" ')}
-          navigation={navigation}
         />
       );
     default:
